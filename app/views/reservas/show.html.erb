@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @reserva.nombre %>
+</p>
+
+<p>
+  <strong>Nif:</strong>
+  <%= @reserva.nif %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @reserva.direccion %>
+</p>
+
+<p>
+  <strong>Coche:</strong>
+  <%= @reserva.coche %>
+</p>
+
+<p>
+  <strong>Kilometraje:</strong>
+  <%= @reserva.kilometraje %>
+</p>
+
+<p>
+  <strong>Matriculacion:</strong>
+  <%= @reserva.matriculacion %>
+</p>
+
+<p>
+  <strong>Chasis:</strong>
+  <%= @reserva.chasis %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @reserva.precio %>
+</p>
+
+<%= link_to 'Edit', edit_reserva_path(@reserva) %> |
+<%= link_to 'Back', reservas_path %>
