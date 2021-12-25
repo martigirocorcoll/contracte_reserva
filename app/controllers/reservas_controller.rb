@@ -8,6 +8,12 @@ class ReservasController < ApplicationController
 
   # GET /reservas/1 or /reservas/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name", template: "reservas/show.html.erb"   # Excluding ".pdf" extension.
+      end
+    end
   end
 
   # GET /reservas/new
