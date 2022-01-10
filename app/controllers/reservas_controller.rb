@@ -11,7 +11,7 @@ class ReservasController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "file_name", template: "reservas/show.html.erb"   # Excluding ".pdf" extension.
+        render pdf: "file_name", template: "reservas/show.html.erb", encoding: 'utf8'   # Excluding ".pdf" extension.
       end
     end
   end

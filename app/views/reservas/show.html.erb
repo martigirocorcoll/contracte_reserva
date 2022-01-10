@@ -1,55 +1,116 @@
 <p id="notice"><%= notice %></p>
 
-<div class = "d-flex justify-content-between align-items-center m-4">
-    <div>
-    <%= image_tag("logo.png", width: 300) %>
-    </div>
-    <div>
-      <p>Importy Garage S.L. - B67615385</p>
-      <p>Pg. Joan de Borbó 103 L11</p>
-      <p>Barcelona 08039</p>
-    </div>
+<table style="width:100%">
+  <tr>
+    <td>
+      <%= image_tag image_url("logo.png") %>
+    </td>
+    <td>
+      <p style="text-align:right;">Importy Garage S.L. - B67615385</p>
+      <p style="text-align:right;">Pg. Joan de Borbó 103 L11</p>
+      <p style="text-align:right;">Barcelona 08039</p>
+    </td>
+  </tr>
+</table>
+
+<div style="border-bottom: 5px solid black;">
+  <table style="width:100%">
+    <td>
+      <h1>Datos del vehículo:</h1>
+    </td>
+    <td>
+     <h1 style="text-align:right;">Fecha: <small><%= @reserva.created_at.strftime("%d-%m-%Y") %></small></h1>
+    </td>
+  </table>
+  <p>
+    <strong>Modelo:</strong>
+    <%= @reserva.coche %>
+  </p>
+  <p>
+    <strong>Kilometraje:</strong>
+    <%= @reserva.kilometraje %>
+  </p>
+  <p>
+    <strong>1ª matriculacion:</strong>
+    <%= @reserva.matriculacion %>
+  </p>
+  <p>
+    <strong>Nº de chasis:</strong>
+    <%= @reserva.chasis %>
+  </p>
+</div>
+<div style="border-bottom: 5px solid black;">
+<h1>Datos de la reserva:</h1>
+  <p>
+    <strong>Precio de venta:</strong>
+    <%= number_to_currency(@reserva.precio)[1..]%> €
+  </p>
+  <ul>
+  <li>
+    <strong>Importe 1a reserva:</strong>
+    3,000 €
+  </li>
+  <li>
+    <strong>Importe 2a reserva:</strong>
+    <%= number_to_currency(@reserva.precio.to_i * 0.4 - 3000)[1..] %> €
+  </li>
+  <li>
+    <strong>Importe pago final:</strong>
+    <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..] %> €
+  </li>
+  </ul>
+  <p>
+    <strong>Cuenta de ingreso (IBAN):</strong>
+    ES57 2100 0801 1302 0108 6618     -
+    <strong>Código BIC:</strong>
+    CAIXESBBXXX
+  </p>
+</div>
+<div>
+<h1>Cláusulas:</h1>
+  <p>
+    Reserva del vehículo descrito a favor de: <%= @reserva.nombre %> con NIF <%= @reserva.nif %> y con domicilio en <%= @reserva.direccion %>. (de aquí en adelante, EL CLIENTE).
+  </p>
+  <p>
+    El presente contrato de reserva indica el precio final del vehículo entregado , incluyendo la matriculación española y el cambio de nombre.
+  </p>
+  <p>
+    Para iniciar la importación del coche, el cliente realizará los ingresos por transferencia bancaria a la cuenta indicada de la siguiente forma
+  </p>
+  <ol>
+    <li>
+      Se hará un pago inicial del importe de la 1a reserva de 3.000€ para poder reservar el coche en Alemania.
+    </li>
+    <li>
+      Seguidamente, se hará el pago de la 2a reserva, de  <%= @reserva.precio.to_i * 0.4 - 3000 %>€ para iniciar los trámites de la importación
+    </li>
+    <li>
+      El pago restante del vehículo (<%= @reserva.precio.to_i * 0.6 %>€) se hará a la entrega, una vez este ya esté matriculado a nombre del cliente.
+    </li>
+
+  </ol>
+
+  <p>
+  En caso de que dicho vehículo no se entregue al cliente en las condiciones adecuadas y con el equipamiento y estado acordado en “Annexo 1: <%= @reserva.coche %>”, el cliente tiene derecho a recuperar todas las cantidades entregadas a cuenta y cancelar la venta. En el caso de no llevarse a cabo la venta, por causas imputables al cliente cumpliendo el coche las especificaciones indicadas ,el cliente perderá el importe de la reserva.
+  </p>
 </div>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @reserva.nombre %>
-</p>
 
-<p>
-  <strong>Nif:</strong>
-  <%= @reserva.nif %>
-</p>
-
-<p>
-  <strong>Direccion:</strong>
-  <%= @reserva.direccion %>
-</p>
-
-<p>
-  <strong>Coche:</strong>
-  <%= @reserva.coche %>
-</p>
-
-<p>
-  <strong>Kilometraje:</strong>
-  <%= @reserva.kilometraje %>
-</p>
-
-<p>
-  <strong>Matriculacion:</strong>
-  <%= @reserva.matriculacion %>
-</p>
-
-<p>
-  <strong>Chasis:</strong>
-  <%= @reserva.chasis %>
-</p>
-
-<p>
-  <strong>Precio:</strong>
-  <%= @reserva.precio %>
-</p>
-
-<%= link_to 'Edit', edit_reserva_path(@reserva) %> |
-<%= link_to 'Back', reservas_path %>
+<table style="width:100%">
+  <tr>
+    <td>
+      <h2 style="text-align:center;"><%= @reserva.nombre %></h2>
+    </td>
+    <td>
+      <h2 style="text-align:center;">Importy Garage S.L.</h2>
+    </td>
+  </tr>
+    <tr>
+    <td>
+      <h2 style="text-align:center;"><%=   %></h2>
+    </td>
+    <td style = "text-align:center;">
+      <%= image_tag image_url("firma.png") %>
+    </td>
+  </tr>
+</table>
