@@ -2,17 +2,11 @@
 
 <h1>Reservas</h1>
 
-<table>
+<table style ="width:100%;">
   <thead>
     <tr>
-      <th>Nombre</th>
-      <th>Nif</th>
-      <th>Direccion</th>
       <th>Coche</th>
-      <th>Kilometraje</th>
-      <th>Matriculacion</th>
-      <th>Chasis</th>
-      <th>Precio</th>
+      <th>Nombre</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,15 +14,9 @@
   <tbody>
     <% @reservas.each do |reserva| %>
       <tr>
-        <td><%= reserva.nombre %></td>
-        <td><%= reserva.nif %></td>
-        <td><%= reserva.direccion %></td>
         <td><%= reserva.coche %></td>
-        <td><%= reserva.kilometraje %></td>
-        <td><%= reserva.matriculacion %></td>
-        <td><%= reserva.chasis %></td>
-        <td><%= reserva.precio %></td>
-        <td><%= link_to 'Show', reserva %></td>
+        <td><%= reserva.nombre %></td>
+        <td><%= link_to 'Show', reserva_path(reserva.id, :format => :pdf) %></td>
         <td><%= link_to 'Edit', edit_reserva_path(reserva) %></td>
         <td><%= link_to 'Destroy', reserva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -38,4 +26,6 @@
 
 <br>
 
+<div style = "text-align:center;">
 <%= link_to 'New Reserva', new_reserva_path %>
+</div>

@@ -11,7 +11,7 @@ class ReservasController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "file_name", template: "reservas/show.html.erb", encoding: 'utf8'   # Excluding ".pdf" extension.
+        render pdf: "contrato-reserva", template: "reservas/show.html.erb", encoding: 'utf8'   # Excluding ".pdf" extension.
       end
     end
   end
@@ -71,6 +71,6 @@ class ReservasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reserva_params
-      params.require(:reserva).permit(:nombre, :nif, :direccion, :coche, :kilometraje, :matriculacion, :chasis, :precio)
+      params.require(:reserva).permit(:nombre, :nif, :direccion, :coche, :kilometraje, :matriculacion, :chasis, :precio, :iva_dedu, :coche_canvi, :coche_canvi_km, :coche_canvi_preu, :coche_canvi_model, :coche_canvi_ano, :coche_canvi_matricula)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_25_220310) do
+ActiveRecord::Schema.define(version: 2022_01_10_154646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2021_12_25_220310) do
     t.string "precio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "iva_dedu"
+    t.boolean "coche_canvi"
+    t.string "coche_canvi_preu"
+    t.string "coche_canvi_model"
+    t.string "coche_canvi_km"
+    t.string "coche_canvi_matricula"
+    t.string "coche_canvi_ano"
   end
 
   create_table "users", force: :cascade do |t|

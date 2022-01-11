@@ -41,22 +41,29 @@
 </div>
 <div style="border-bottom: 5px solid black;">
 <h1>Datos de la reserva:</h1>
-  <p>
-    <strong>Precio de venta:</strong>
-    <%= number_to_currency(@reserva.precio)[1..]%> €
-  </p>
+  <%unless @reserva.iva_dedu == true %>
+    <p>
+      <strong>Precio de venta:</strong>
+      <%= number_to_currency(@reserva.precio)[1..].gsub(",",":").gsub(".",",").gsub(":",".")%> €
+    </p>
+  <%else %>
+      <p>
+      <strong>Precio de venta:</strong>
+      <%= number_to_currency(@reserva.precio.to_i / 1.21)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€ + IVA = <%= number_to_currency(@reserva.precio)[1..].gsub(",",":").gsub(".",",").gsub(":",".")%> €
+    </p>
+  <%end %>
   <ul>
   <li>
     <strong>Importe 1a reserva:</strong>
-    3,000 €
+    3.000 €
   </li>
   <li>
     <strong>Importe 2a reserva:</strong>
-    <%= number_to_currency(@reserva.precio.to_i * 0.4 - 3000)[1..] %> €
+    <%= number_to_currency(@reserva.precio.to_i * 0.4 - 3000)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %> €
   </li>
   <li>
     <strong>Importe pago final:</strong>
-    <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..] %> €
+    <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %> €
   </li>
   </ul>
   <p>
@@ -75,18 +82,32 @@
     El presente contrato de reserva indica el precio final del vehículo entregado , incluyendo la matriculación española y el cambio de nombre.
   </p>
   <p>
-    Para iniciar la importación del coche, el cliente realizará los ingresos por transferencia bancaria a la cuenta indicada de la siguiente forma
+    Para iniciar la importación del coche, el cliente realizará los ingresos por transferencia bancaria a la cuenta indicada de la siguiente forma:
   </p>
   <ol>
     <li>
       Se hará un pago inicial del importe de la 1a reserva de 3.000€ para poder reservar el coche en Alemania.
     </li>
     <li>
-      Seguidamente, se hará el pago de la 2a reserva, de  <%= @reserva.precio.to_i * 0.4 - 3000 %>€ para iniciar los trámites de la importación
+      Seguidamente, se hará el pago de la 2a reserva, de  <%= number_to_currency(@reserva.precio.to_i * 0.4 - 3000)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€ para iniciar los trámites de la importación
     </li>
-    <li>
-      El pago restante del vehículo (<%= @reserva.precio.to_i * 0.6 %>€) se hará a la entrega, una vez este ya esté matriculado a nombre del cliente.
-    </li>
+    <% unless @reserva.coche_canvi == true %>
+      <li>
+        El pago restante del vehículo, <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€, se hará a la entrega, una vez este ya esté matriculado a nombre del cliente.
+      </li>
+    <% else %>
+      <li>
+        El pago restante del vehículo, <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€, se hará a la entrega, una vez este ya esté matriculado a nombre del cliente. Este pago se haráde la siguiente forma:
+        <ul>
+          <li>
+            <%= number_to_currency(@reserva.precio.to_i * 0.6 - @reserva.coche_canvi_preu.to_i)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€ se pagaran por transferencia bancaria.
+          </li>
+          <li>
+            Los <%= number_to_currency(@reserva.coche_canvi_preu)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€ restantes se pagaran mediante la entrega de un coche a cambio. Se trata de un <%= @reserva.coche_canvi_model %> con primera matriculación el <%= @reserva.coche_canvi_ano %>, un kilometraje de <%= @reserva.coche_canvi_km %> km y con matrícula <%= @reserva.coche_canvi_matricula %>.
+          </li>
+        </ul>
+      </li>
+    <% end %>
 
   </ol>
 

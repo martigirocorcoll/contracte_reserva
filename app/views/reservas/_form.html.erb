@@ -3,18 +3,29 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :nombre %>
-    <%= f.input :nif %>
-    <%= f.input :direccion %>
+  <div class="form-inputs container">
+    <h4 class = "title">Datos del vehículo:</h4>
     <%= f.input :coche %>
     <%= f.input :kilometraje %>
     <%= f.input :matriculacion %>
     <%= f.input :chasis %>
+    <h4 class = "title" >Datos de la reserva:</h4>
     <%= f.input :precio %>
+    <%= f.input :iva_dedu %>
+    <h4 class = "title">Cáusulas:</h4>
+    <%= f.input :nombre %>
+    <%= f.input :nif %>
+    <%= f.input :direccion %>
+    <h4 class = "title">Coche a cambio:</h4>
+    <%= f.input :coche_canvi %>
+    <%= f.input :coche_canvi_preu %>
+    <%= f.input :coche_canvi_model, :label => "Marca i modelo" %>
+    <%= f.input :coche_canvi_km, :label => "Kilometraje" %>
+    <%= f.input :coche_canvi_ano, :label => "1ª Matriculación" %>
+    <%= f.input :coche_canvi_matricula, :label => "Nº de matricula" %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions title container btn-primary">
     <%= f.button :submit %>
   </div>
 <% end %>
