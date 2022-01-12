@@ -28,7 +28,7 @@
   </p>
   <p>
     <strong>Kilometraje:</strong>
-    <%= @reserva.kilometraje %>
+    <%= @reserva.kilometraje %> km
   </p>
   <p>
     <strong>1ª matriculacion:</strong>
@@ -93,11 +93,11 @@
     </li>
     <% unless @reserva.coche_canvi == true %>
       <li>
-        El pago restante del vehículo, <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€, se hará a la entrega, una vez este ya esté matriculado a nombre del cliente.
+        El pago restante del vehículo, <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€, se hará a la entrega, una vez este ya esté matriculado a nombre del cliente. Dicha entrega se realizará en un plazo aproximado de 6 semanas.
       </li>
     <% else %>
       <li>
-        El pago restante del vehículo, <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€, se hará a la entrega, una vez este ya esté matriculado a nombre del cliente. Este pago se haráde la siguiente forma:
+        El pago restante del vehículo, <%= number_to_currency(@reserva.precio.to_i * 0.6)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€, se hará a la entrega, una vez este ya esté matriculado a nombre del cliente. Dicha entrega se realizará en un plazo aproximado de 6 semanas. El pago se hará de la siguiente forma:
         <ul>
           <li>
             <%= number_to_currency(@reserva.precio.to_i * 0.6 - @reserva.coche_canvi_preu.to_i)[1..].gsub(",",":").gsub(".",",").gsub(":",".") %>€ se pagaran por transferencia bancaria.
