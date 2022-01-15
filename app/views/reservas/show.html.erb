@@ -22,22 +22,28 @@
      <h1 style="text-align:right;">Fecha: <small><%= @reserva.created_at.strftime("%d-%m-%Y") %></small></h1>
     </td>
   </table>
-  <p>
-    <strong>Modelo:</strong>
-    <%= @reserva.coche %>
-  </p>
-  <p>
-    <strong>Kilometraje:</strong>
-    <%= @reserva.kilometraje %> km
-  </p>
-  <p>
-    <strong>1ª matriculacion:</strong>
-    <%= @reserva.matriculacion %>
-  </p>
-  <p>
-    <strong>Nº de chasis:</strong>
-    <%= @reserva.chasis %>
-  </p>
+  <table style="width:100%">
+    <td>
+      <p>
+        <strong>Modelo:</strong>
+        <%= @reserva.coche %>
+      </p>
+      <p>
+        <strong>Kilometraje:</strong>
+        <%= @reserva.kilometraje %> km
+      </p>
+    </td>
+    <td>
+      <p>
+        <strong>1ª matriculacion:</strong>
+        <%= @reserva.matriculacion %>
+      </p>
+      <p>
+        <strong>Nº de chasis:</strong>
+        <%= @reserva.chasis %>
+      </p>
+    </td>
+  </table>
 </div>
 <div style="border-bottom: 5px solid black;">
 <h1>Datos de la reserva:</h1>
